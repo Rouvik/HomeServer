@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rouvik's Personal Home Server</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Index of operations:</h1>
+    <ul>
+        <li>
+            <a href="/fs/html/">File System server</a>
+            <ul>
+                <li>
+                    <a id="fsRootURL">Serve server root</a>
+                </li>
+                <li>
+                    <a id="fsHomeURL">Server Home</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/public/shell/shell.html">Online Shell</a>
+        </li>
+    </ul>
+</body>
+<script>
+    async function asyncStuff() {
+        const fsRootURL = document.getElementById("fsRootURL");
+        const fsHomeURL = document.getElementById("fsHomeURL");
+
+        fsRootURL.href = window.location.origin + "/fs/html/" + (await (await fetch("/fs/api/serverRootURL")).text());
+        fsHomeURL.href = window.location.origin + "/fs/html/" + (await (await fetch("/fs/api/homeURL")).text());
+    }
+
+    asyncStuff();
+</script>
+</html>

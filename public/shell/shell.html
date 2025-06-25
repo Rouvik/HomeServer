@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote shell</title>
+    <link rel="stylesheet" href="./xterm/xterm.min.css">
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            background-color: black;
+        }
+
+        #shell {
+            width: 100vw;
+            height: 90vh;
+        }
+
+        .backLink {
+            margin-left: 50vw;
+            padding: 5px;
+            transform: translateX(-50%);
+            border: 1px solid green;
+            border-radius: 5px;
+
+            text-decoration: none;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: white;
+
+            transition: 200ms;
+        }
+
+        .backLink::before {
+            content: "🔙";
+        }
+
+        .backLink:hover {
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+    <div id="shell"></div><br>
+    <a href=".." class="backLink">Back</a>
+</body>
+<script src="./xterm/xterm.js"></script>
+<script src="./xterm/xterm-addon-fit.min.js"></script>
+<script src="./shell.js"></script>
+</html>

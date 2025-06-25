@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= fileName %>
+    </title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: white;
+            background-color: black;
+        }
+
+        .error {
+            background-color: #FFBABA;
+            width: fit-content;
+            padding: 5px;
+            border: 2px solid red;
+            border-radius: 5px;
+            font-size: 1.5em;
+        }
+
+        .listContainer {
+            border: 1px solid white;
+            border-radius: 10px;
+
+            overflow: hidden;
+            padding: 0;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(0, 183, 255);
+        }
+
+        .listContainer table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .listContainer thead {
+            background-color: rgb(0, 0, 68);
+        }
+
+        .listContainer td {
+            padding: 10px;
+        }
+
+        .listContainer tr:nth-child(even) {
+            background-color: rgb(0, 0, 28);
+        }
+
+        .listContainer tr:nth-child(odd):not(:first-child) {
+            background-color: rgb(9, 9, 9);
+        }
+        
+
+        .listContainer tr:hover {
+            background-color: rgb(128 128 128 / 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>At: <%= filePath %>
+    </h1>
+    <% if(error) { %>
+        <div class="error"><img src="/public/assets/warning.png" width="24" height="24" alt="warning" /> Error internal server error: <%= error %></div>
+    <% } else if(nonExistent) { %>
+        <p class="error"><img src="/public/assets/warning.png" width="24" height="24" alt="warning" /> Error <%= fileName %> doesnot exist or is inaccessible</p>
+    <% } else { %>
+        <div class="listContainer">
+            <table>
+                <thead><tr>
+                    <td>Name</td>
+                    <td>Size</td>
+                    <td>Created</td>
+                    <td>Last Modified</td>
+                </tr></thead>
+            <% dirent.forEach(element => { %>
+                <tr>
+                    <td>
+                        <% if(element.isDirectory) { %> <img src="/public/assets/folder.png" width="24" height="24" alt="folder" /> <% } else { %>
+                        <img src="/public/assets/document.png" width="24" height="24" alt="file" /> <% } %>
+                        <a href="<%= urlBase + element.path %>"><%= element.name %></a>
+                    </td>
+                    <td> <%= element.size %> </td>
+                    <td> <%= element.birthtime %> </td>
+                    <td> <%= element.mtime %> </td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+    <% } %>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "homeserver",
+  "version": "1.0.0",
+  "description": "A simple personal home server",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "ws",
+    "http",
+    "https"
+  ],
+  "author": "Rouvik Maji",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "node-pty": "^1.0.0",
+    "p-limit": "^6.2.0",
+    "ws": "^8.18.2"
+  }
+}
